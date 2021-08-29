@@ -7,8 +7,8 @@ let storage = multer.diskStorage({
     cb(null, __basedir + "/resources/static/assets/uploads/");
   },
   filename: (req, file, cb) => {
-    req.fileName = Date.now().toString();
-    cb(null, req.fileName + ".txt");
+    req.fileName = file.originalname + "-" + Date.now().toString() + ".txt";
+    cb(null, req.fileName);
   },
 });
 
