@@ -52,7 +52,7 @@ const getListFiles = (req, res) => {
     files.forEach((file, index) => {
       fileInfos[0].data.push({
         fileNumber: index + 1,
-        data: {
+        file: {
           name: file,
           url: process.env.FILE_BASEURL + "/" + file,
         },
