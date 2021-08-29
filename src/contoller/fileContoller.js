@@ -7,15 +7,20 @@ const upload = async (req, res) => {
     await uploadFile.uploadFileMiddleware(req, res);
 
     if (req.file == undefined) {
-      return res.status(400).send({ message: "Please upload a file!" });
+      return res.status(400).send({
+        status: 400,
+        message: "Please upload a file!",
+      });
     }
 
     res.status(200).send({
+      status:200,
       message: "Uploaded the file successfully: " + req.fileName,
     });
   } catch (err) {
     if (err.code == "LIMIT_FILE_SIZE") {
       return res.status(500).send({
+        status:500,
         message: "File size cannot be larger than 2MB!",
       });
     }
@@ -36,14 +41,16 @@ const getListFiles = (req, res) => {
       });
     }
 
-    let fileInfos = [{
-      status:"success",
-      data:[]
-  }];
+    let fileInfos = [
+      {
+        status: "success",
+        data: [],
+      },
+    ];
 
-    files.forEach((file,index) => {
+    files.forEach((file, index) => {
       fileInfos[0].data.push({
-        fileNumber:index+1,
+        fileNumber: index + 1,
         data: {
           name: file,
           url: process.env.FILE_BASEURL + "/" + file,
