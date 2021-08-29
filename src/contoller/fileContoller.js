@@ -37,13 +37,14 @@ const getListFiles = (req, res) => {
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
       res.status(500).send({
+        status:500,
         message: "Unable to scan files!",
       });
     }
 
     let fileInfos = [
       {
-        status: "success",
+        status: 200,
         data: [],
       },
     ];
@@ -69,6 +70,7 @@ const download = (req, res) => {
   res.download(directoryPath + fileName, fileName, (err) => {
     if (err) {
       res.status(500).send({
+        status:500,
         message: "Could not download the file. " + err,
       });
     }
