@@ -11,7 +11,7 @@ const upload = async (req, res) => {
     }
 
     res.status(200).send({
-      message: "Uploaded the file successfully: " + uploadFile.fileName + ".txt",
+      message: "Uploaded the file successfully: " + req.fileName + ".txt",
     });
   } catch (err) {
     if (err.code == "LIMIT_FILE_SIZE") {
